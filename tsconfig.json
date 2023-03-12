@@ -7,8 +7,8 @@
             "@wdio/globals/types",
             "expect-webdriverio",
             "@wdio/cucumber-framework",
-            //"webdriverio/async"
         ],
         "target": "es2022"
     }
+
 }

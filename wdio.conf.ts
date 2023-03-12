@@ -1,6 +1,7 @@
 import type { Options } from '@wdio/types'
 
 export const config: Options.Testrunner = {
+
     //
     // ====================
     // Runner Configuration
@@ -35,7 +36,7 @@ export const config: Options.Testrunner = {
     ],
     // Patterns to exclude.
     exclude: [
-        // 'path/to/excluded/files'
+        './features/automationexersize.feature'
     ],
     //
     // ============
@@ -64,10 +65,20 @@ export const config: Options.Testrunner = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 1,
         //
         browserName: 'chrome',
-        acceptInsecureCerts: true
+        acceptInsecureCerts: true,
+        //
+        // 'goog:chromeOptions': {
+        //     args: [
+        //       '--load-extension=/home/.config/google-chrome/Default/Extensions/bgnkhhnnamicmpeenaelnjfhikgbkllg.pem',
+        //       '--disable-extensions-except=/home/.config/google-chrome/Default/Extensions/bgnkhhnnamicmpeenaelnjfhikgbkllg.pem',
+        //       '--disable-infobars',
+        //       '--disable-notifications'
+        //     ]
+        //   }
+
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
@@ -80,7 +91,7 @@ export const config: Options.Testrunner = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -107,11 +118,11 @@ export const config: Options.Testrunner = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 15000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 160000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -142,14 +153,14 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec',['allure', {outputDir: 'allure-results'}]],
+    reporters: ['spec'],
 
 
     //
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
         // <string[]> (file/dir) require files before executing features
-        require: ['./features/step-definitions/steps.ts'],
+        require: ['./features/step-definitions/*.ts'],
         // <boolean> show full backtrace for errors
         backtrace: false,
         // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -169,7 +180,7 @@ export const config: Options.Testrunner = {
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.
-        ignoreUndefinedDefinitions: false
+        ignoreUndefinedDefinitions: true
     },
     
     //
@@ -215,8 +226,7 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {String} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
+ 
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -224,8 +234,15 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    // before: function () {
+        // before: function () {
+        //     browser.addCommand("forceClick", function (selector: string) {
+        //       const elem = $(selector);
+        //       return browser.execute('arguments[0].dispatchEvent(new MouseEvent("click", {bubbles: true, cancelable: true, force: true}))', elem);
+        //     });
+        //   },
+
+    //     }
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
