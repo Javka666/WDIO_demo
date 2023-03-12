@@ -1,7 +1,7 @@
 
 class WebTablesPage {
 
-get getHeaderLoc () { return $('main-header') }; 
+get getHeaderLoc () { return $('//div[text()="Web Tables"]') }; 
 
 get getHeaderOfRegistrationFormLoc() { return $('//div[@class="modal-title h4"]') };
 

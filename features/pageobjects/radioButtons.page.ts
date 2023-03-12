@@ -9,7 +9,7 @@ class RadioboxPage {
   
   get result() { return $('//p[text()="You have selected "]') };
     
-  get getHeaderLoc () { return $('main-header')};
+  get getHeaderLoc () { return $('//div[text()="Radio Button"]') };
 
 
 
